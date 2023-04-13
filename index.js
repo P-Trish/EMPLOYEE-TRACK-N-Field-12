@@ -33,7 +33,6 @@ function mainMenu() {
                     return;
 
 
-
             }
         })
         .catch((err) => console.error(err));
@@ -72,10 +71,6 @@ mainMenu();
 
 // Acceptance Criteria
 
-// GIVEN a command-line application that accepts user input
-
-
-
 // QUERY TYPE: INPUT
 // WHEN I choose to add a department
 // THEN I am prompted to enter the name of the department and that department is added to the database
@@ -93,7 +88,9 @@ mainMenu();
 // THEN I am prompted to select an employee to update and their new role and this information is updated in the database
 
 
-// Bonus
+
+
+// ******Bonus*******
 // Fulfilling any of the following can add up to 20 points to your grade. Note that the highest grade you can achieve is still 100:
 
 // Application allows users to update employee managers (2 points).
