@@ -136,6 +136,7 @@ async function addDepartment() {
         })
 };
 
+// Update Employee Role
 async function updateEmployeeRole() {
     let employees = [];
     const employeeRoles = [];
@@ -163,12 +164,15 @@ async function updateEmployeeRole() {
                             choices: employeeRoles
                         })
                             .then((role) => {
-                                console.log(employee, role);
+                                // console.log(employee, role);
+                                // { employeeToUpdate: 'Liziel Corate' } { roleAssignment: 'Production Manager' }
                                 const name = employee.employeeToUpdate.split(' ');
-                                console.log(name);
+                                // console.log(name);
+                                // [ 'Liziel', 'Corate' ]
                                 const roleId = roles.findIndex(roleEl => roleEl === role.roleAssignment) + 1;
                                 connection.promise().query(sql.updateEmployeeRole, [roleId, name[0], name[1]])
                                 console.log(`${name[0]} ${name[1]} has been updated to ${role.roleAssignment}`);
+                                console.log('\n');
                                 mainMenu();
                             });
                     })
@@ -180,24 +184,27 @@ mainMenu();
 
 
 
-// Acceptance Criteria
-
-
-// WHEN I choose to update an employee role
-// THEN I am prompted to select an employee to update and their new role and this information is updated in the database
-
-
-
 
 // ******Bonus*******
+
 // Fulfilling any of the following can add up to 20 points to your grade. Note that the highest grade you can achieve is still 100:
 
 // Application allows users to update employee managers (2 points).
+// select employee to update from list
+// select a manager from list
+// look at update employee role to convert names to ids
 
 // Application allows users to view employees by manager (2 points).
+// sql query to view employees by manager
 
 // Application allows users to view employees by department (2 points).
+// sql query to view employees by department 
+// do in workbench and build in js
 
 // Application allows users to delete departments, roles, and employees (2 points for each).
+// look at update employe, but choose from a list of departments, roles, and employees
+// make 3 different options 
 
 // Application allows users to view the total utilized budget of a department—in other words, the combined salaries of all employees in that department (8 points).
+// combined salaries of all employees in that department
+// look up SUM function in sql
