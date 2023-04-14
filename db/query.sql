@@ -35,4 +35,7 @@ department ON role.department_id = department.id
 LEFT JOIN employee manager ON manager.id = employee.manager_id;
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id) 
-VALUES  (?, ?, ?, ?);
+    VALUES  (?, ?, ?, ?);
+
+INSERT INTO role (title, salary, department_id) 
+    VALUES (?,?,?);

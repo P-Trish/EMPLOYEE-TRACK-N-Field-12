@@ -33,7 +33,12 @@ function mainMenu() {
                 case 'Add Employee':
                     addEmployee();
                     break;
-
+                case 'Add Role':
+                    addRole();
+                    break;
+                case 'Add Department':
+                    addDepartment();
+                    break;
 
                 case 'Quit':
                     console.log('Goodbye!');
@@ -76,11 +81,11 @@ function viewAllDepartments() {
             mainMenu();
         });
 }
+// Add Employee
 const roles = ['Production Manager', 'Writing Producer', 'Staff Writer', 'Editor', 'Production Coordinator', 'Post Supervisor', 'Other'];
 
 const managers = ['Liziel Corate', 'Jamie Dino', 'Emily Cronk'];
 
-// Add Employee
 async function addEmployee() {
     await inquirer.prompt(addEmployeeQuestions)
         .then((response) => {
@@ -89,20 +94,26 @@ async function addEmployee() {
             connection.promise().query(sql.addEmployee, [response.firstName, response.lastName, roleId, managerId])
                 .then(() => {
                     console.log('\n');
-                    console.log(`Added ${response.firstName} ${response.lastName} to the database!` );
+                    console.log(`Added ${response.firstName} ${response.lastName} to the database!`);
                     mainMenu();
                 });
+        })
+};
+// Add Role
+const departments = ['Production Office', 'Writers', 'Post-Production'];
 
-
-
-            // connection.promise().query(sql.addEmployee)
-            //   .then(([rows, fields]) => {
-            //         console.log('\n');
-            //         console.table(rows);
-            //         mainMenu();
-            //     });
-        });
-}
+async function addRole() {
+    await inquirer.prompt(addRoleQuestions)
+        .then((response) => {
+            const departmentId = departments.findIndex(department => department === response.department) + 1;
+            connection.promise().query(sql.addRole, [response.title, response.salary, departmentId])
+                .then(() => {
+                    console.log('\n');
+                    console.log(`Added ${response.title} to the database!`);
+                    mainMenu();
+                })
+        })
+};
 
 mainMenu();
 
@@ -114,13 +125,6 @@ mainMenu();
 // WHEN I choose to add a department
 // THEN I am prompted to enter the name of the department and that department is added to the database
 
-// QUERY TYPE: INPUT
-// WHEN I choose to add a role
-// THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
-
-// QUERY TYPE: INPUT
-// WHEN I choose to add an employee
-// THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
 
 
 // WHEN I choose to update an employee role
