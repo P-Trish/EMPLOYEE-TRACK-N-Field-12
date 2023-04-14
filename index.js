@@ -60,6 +60,7 @@ function viewAllEmployees() {
         .then(([rows, fields]) => {
             console.log('\n');
             console.table(rows);
+            console.log('\n');
             mainMenu();
         });
 }
@@ -69,6 +70,7 @@ function viewAllRoles() {
         .then(([rows, fields]) => {
             console.log('\n');
             console.table(rows);
+            console.log('\n');
             mainMenu();
         });
 }
@@ -78,6 +80,7 @@ function viewAllDepartments() {
         .then(([rows, fields]) => {
             console.log('\n');
             console.table(rows);
+            console.log('\n');
             mainMenu();
         });
 }
@@ -95,6 +98,7 @@ async function addEmployee() {
                 .then(() => {
                     console.log('\n');
                     console.log(`Added ${response.firstName} ${response.lastName} to the database!`);
+                    console.log('\n');
                     mainMenu();
                 });
         })
@@ -110,6 +114,21 @@ async function addRole() {
                 .then(() => {
                     console.log('\n');
                     console.log(`Added ${response.title} to the database!`);
+                    console.log('\n');
+                    mainMenu();
+                })
+        })
+};
+
+// Add Department
+async function addDepartment() {
+    await inquirer.prompt(addDepartmentQuestions)
+       .then((response) => {
+            connection.promise().query(sql.addDepartment, response.departmentName)
+               .then(() => {
+                    console.log('\n');
+                    console.log(`Added ${response.departmentName} to the database!`);
+                    console.log('\n');
                     mainMenu();
                 })
         })
