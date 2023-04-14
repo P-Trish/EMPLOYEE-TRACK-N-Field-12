@@ -8,11 +8,11 @@ const connection = require('./config/connection');
 
 const Queries = require('./lib/queries');
 const {
-    questions, 
-    addEmployee, 
-    addRole,
-    addDepartment,
-    updateEmployeeRole
+    questions,
+    addEmployeeQuestions,
+    addRoleQuestions,
+    addDepartmentQuestions,
+    updateEmployeeRoleQuestions
 } = require('./lib/questions');
 
 const sql = new Queries();
@@ -22,7 +22,7 @@ function mainMenu() {
         .then((response) => {
             switch (response.mainMenu) {
                 case 'View All Employees':
-                 viewAllEmployees ();
+                    viewAllEmployees();
                     break;
                 case 'View All Roles':
                     viewAllRoles();
@@ -33,8 +33,8 @@ function mainMenu() {
                 case 'Add Employee':
                     addEmployee();
                     break;
-                
-                
+
+
                 case 'Quit':
                     console.log('Goodbye!');
                     connection.end();
@@ -76,27 +76,32 @@ function viewAllDepartments() {
             mainMenu();
         });
 }
+const roles = ['Production Manager', 'Writing Producer', 'Staff Writer', 'Editor', 'Production Coordinator', 'Post Supervisor', 'Other'];
+
+const managers = ['Liziel Corate', 'Jamie Dino', 'Emily Cronk'];
 
 // Add Employee
 async function addEmployee() {
-    await inquirer.prompt(addEmployee)
+    await inquirer.prompt(addEmployeeQuestions)
         .then((response) => {
-        connection.promise().query(sql.addEmployee, [response.firstName, response.lastName, response.role, response.manager])
-        .then(([rows, fields]) => {
-            console.log('\n');
-            console.table(rows);
-            mainMenu();
+            const roleId = roles.findIndex(role => role === response.role) + 1;
+            const managerId = managers.findIndex(manager => manager === response.manager) + 1;
+            connection.promise().query(sql.addEmployee, [response.firstName, response.lastName, roleId, managerId])
+                .then(() => {
+                    console.log('\n');
+                    console.log(`Added ${response.firstName} ${response.lastName} to the database!` );
+                    mainMenu();
+                });
+
+
+
+            // connection.promise().query(sql.addEmployee)
+            //   .then(([rows, fields]) => {
+            //         console.log('\n');
+            //         console.table(rows);
+            //         mainMenu();
+            //     });
         });
-        
-
-
-    // connection.promise().query(sql.addEmployee)
-    //   .then(([rows, fields]) => {
-    //         console.log('\n');
-    //         console.table(rows);
-    //         mainMenu();
-    //     });
-    });
 }
 
 mainMenu();

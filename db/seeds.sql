@@ -6,11 +6,13 @@ VALUES  ("Production Office"),
 
 INSERT INTO role (title, salary, department_id)
 VALUES  ("Production Manager", 250000, 1),
-        ("Show Runner", 500000, 2),
+        ("Writing Producer", 500000, 2),
         ("Staff Writer", 125000, 2),
         ("Editor", 87000, 3 ),
         ("Production Coordinator", 65000, 1)
-        ("Post Supervisor", 150000, 3);
+        ("Post Supervisor", 150000, 3),
+        ("Other", 000000, 1);
+    
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id) 
 VALUES  ("Liziel", "Corate", 1, null),
