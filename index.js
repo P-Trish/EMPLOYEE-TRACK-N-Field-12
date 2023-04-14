@@ -39,7 +39,9 @@ function mainMenu() {
                 case 'Add Department':
                     addDepartment();
                     break;
-
+                case 'Update Employee Role':
+                    updateEmployeeRole();
+                    break;
                 case 'Quit':
                     console.log('Goodbye!');
                     connection.end();
@@ -123,9 +125,9 @@ async function addRole() {
 // Add Department
 async function addDepartment() {
     await inquirer.prompt(addDepartmentQuestions)
-       .then((response) => {
+        .then((response) => {
             connection.promise().query(sql.addDepartment, response.departmentName)
-               .then(() => {
+                .then(() => {
                     console.log('\n');
                     console.log(`Added ${response.departmentName} to the database!`);
                     console.log('\n');
@@ -134,16 +136,51 @@ async function addDepartment() {
         })
 };
 
+async function updateEmployeeRole() {
+    let employees = [];
+    const employeeRoles = [];
+    await connection.promise().query(sql.getAllEmployeeNames)
+        .then(([rows, fields]) => {
+            rows.forEach((employee) => {
+                employees.push(employee.first_name + ' ' + employee.last_name);
+            });
+
+            inquirer.prompt({
+                type: 'list',
+                name: 'employeeToUpdate',
+                message: 'Which employee\'s role do you want to update?',
+                choices: employees
+            }).then((employee) => {
+                connection.promise().query(sql.getAllTitles)
+                    .then(([rows, fields]) => {
+                        rows.forEach((role) => {
+                            employeeRoles.push(role.title);
+                        })
+                        inquirer.prompt({
+                            type: 'list',
+                            name: 'roleAssignment',
+                            message: 'Which role do you want to assign to the employee?',
+                            choices: employeeRoles
+                        })
+                            .then((role) => {
+                                console.log(employee, role);
+                                const name = employee.employeeToUpdate.split(' ');
+                                console.log(name);
+                                const roleId = roles.findIndex(roleEl => roleEl === role.roleAssignment) + 1;
+                                connection.promise().query(sql.updateEmployeeRole, [roleId, name[0], name[1]])
+                                console.log(`${name[0]} ${name[1]} has been updated to ${role.roleAssignment}`);
+                                mainMenu();
+                            });
+                    })
+            });
+        })
+};
+
 mainMenu();
 
 
 
 // Acceptance Criteria
-
-// QUERY TYPE: INPUT
-// WHEN I choose to add a department
-// THEN I am prompted to enter the name of the department and that department is added to the database
-
 
 
 // WHEN I choose to update an employee role
