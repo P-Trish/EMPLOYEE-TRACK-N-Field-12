@@ -7,7 +7,14 @@ require('console.table');
 const connection = require('./config/connection');
 
 const Queries = require('./lib/queries');
-const questions = require('./lib/questions');
+const {
+    questions, 
+    addEmployee, 
+    addRole,
+    addDepartment,
+    updateEmployeeRole
+} = require('./lib/questions');
+
 const sql = new Queries();
 
 function mainMenu() {
@@ -23,6 +30,11 @@ function mainMenu() {
                 case 'View All Departments':
                     viewAllDepartments();
                     break;
+                case 'Add Employee':
+                    addEmployee();
+                    break;
+                
+                
                 case 'Quit':
                     console.log('Goodbye!');
                     connection.end();
@@ -63,6 +75,28 @@ function viewAllDepartments() {
             console.table(rows);
             mainMenu();
         });
+}
+
+// Add Employee
+async function addEmployee() {
+    await inquirer.prompt(addEmployee)
+        .then((response) => {
+        connection.promise().query(sql.addEmployee, [response.firstName, response.lastName, response.role, response.manager])
+        .then(([rows, fields]) => {
+            console.log('\n');
+            console.table(rows);
+            mainMenu();
+        });
+        
+
+
+    // connection.promise().query(sql.addEmployee)
+    //   .then(([rows, fields]) => {
+    //         console.log('\n');
+    //         console.table(rows);
+    //         mainMenu();
+    //     });
+    });
 }
 
 mainMenu();
