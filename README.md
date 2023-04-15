@@ -33,13 +33,17 @@ The query.sql, schema.sql, and seeds.sql files in the "db" folder are used to in
 
 ## Usage
 
-In the terminal I run the command node index.js in the root directory to open the application.  The user is then ment with a main menu to use the arrows to select options for interacting with the database.  
+In the terminal I run the command node index.js in the root directory to open the application.  The user is then ment with a main menu to use the arrows to select options for interacting with the database.  The inquirer module was used to create the main menu and provide aided the user in guiding them through the questions for data entry.
 
 ![alt text](./assets/HW12_mainMenu1.png)
+
+When the user selects the "View" options, they are able to View All Employees, View All Departments, and View All Roles in which they are presented with the three tables respectively.  This is displayed via the console.table module. 
 
 ![alt text](./assets/HW12_viewAllEmployees2.png)
 
 ![alt text](./assets/HW12_viewAllDepts_viewAllRoles3.png)
+
+When the user selects one of the "Add" options, they are able to Add Department, Add Role, and Add Employee to insert data into the respective tables.  Addditionally, the user can also update an employee role.  The user is prompted to select an employee from a list of all employees, and then to choose a role to update from a list of all roles in the database.  When they update the employee role, it is added to the database. 
 
 ![alt text](./assets/HW12_adds_update4.png)
 
