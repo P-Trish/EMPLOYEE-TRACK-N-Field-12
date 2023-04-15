@@ -9,28 +9,25 @@ Provide a short description explaining the what, why, and how of your project. U
 - What problem does it solve?
 - What did you learn?
 
-## Table of Contents (Optional)
+PLEASE SEE THE LINK CONTAINING A DEMO VIDEO OF THE APPLICATION: 
 
-If your README is long, add a table of contents to make it easy for users to find what they need.
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
 
 ## Installation
 
 npm i
+
 npm i inquirer@8.2.4
+
 npm i mysql2
+
 npm i console.table
+
 npm i dotenv
 
 ## Usage
 
 Provide instructions and examples for use. Include screenshots as needed.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
     ```md
     ![alt text](assets/images/screenshot.png)
@@ -38,24 +35,12 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+​I'd like to thank the tutors that helped me get started and supported the writing of my code throughout creation of this project.
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
 
 ## License
 
 N/A
-
-
-## Features
-
-If your project has a lot of features, list them here.
-
-
-## Tests
-
 
 
 ## Questions
