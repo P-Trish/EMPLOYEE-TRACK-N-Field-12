@@ -2,36 +2,47 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+This project is an employee tracker built from scratch through the command-line applcation. It utilizes the console.table, dotenv, inquirer, and mysql2 packages and dependencies.  This application can be used to manage a company's employee database.  The motivation for this project is to take on the user story: 
+"AS A business owner
+I WANT to be able to view and manage the departments, roles, and employees in my company
+SO THAT I can organize and plan my business,"
+and create the application to solve this problem.
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+The Employee Tracker is developed for business owners, aiming to offer them a solution for managing and coordinating their employee roster.
 
-PLEASE SEE THE LINK CONTAINING A DEMO VIDEO OF THE APPLICATION: 
+By offering a simplified interface for users to interact with their data through the command line, the project addresses the challenge of database interfacing.
+
+By building this Employee Tracker, I learned to further implement the packages and dependencies of console.table, dotenv, and mysql2.  I also learned how to read and write database and use them in javaScript.  
+
+
+PLEASE SEE THE LINK CONTAINING A DEMO VIDEO OF THE APPLICATION: https://drive.google.com/file/d/12c7NSTGEa4lW32BhQ8z_2n3MoZdVeSgQ/view
 
 
 ## Installation
 
-npm i
+This project uses the following dependencies:
+"console.table": "^0.10.0",
+"dotenv": "^16.0.3",
+"inquirer": "^8.2.4",
+"mysql2": "^3.2.0"
 
-npm i inquirer@8.2.4
+The command 'npm i' is ran to install Node Package Manager, along with the above modules.
 
-npm i mysql2
+The query.sql, schema.sql, and seeds.sql files in the "db" folder are used to initialize and seed the database. 
 
-npm i console.table
-
-npm i dotenv
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+In the terminal I run the command node index.js in the root directory to open the application.  The user is then ment with a main menu to use the arrows to select options for interacting with the database.  
 
+![alt text](./assets/images/)
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+![alt text](assets/images/screenshot.png)
+
+![alt text](assets/images/screenshot.png)
+
+![alt text](assets/images/screenshot.png)
+
 
 ## Credits
 
