@@ -35,13 +35,13 @@ The query.sql, schema.sql, and seeds.sql files in the "db" folder are used to in
 
 In the terminal I run the command node index.js in the root directory to open the application.  The user is then ment with a main menu to use the arrows to select options for interacting with the database.  
 
-![alt text](./assets/images/)
+![alt text](./assets/HW12_mainMenu1.png)
 
-![alt text](assets/images/screenshot.png)
+![alt text](./assets/HW12_viewAllEmployees2.png)
 
-![alt text](assets/images/screenshot.png)
+![alt text](./assets/HW12_viewAllDepts_viewAllRoles3.png)
 
-![alt text](assets/images/screenshot.png)
+![alt text](./assets/HW12_adds_update4.png)
 
 
 ## Credits
